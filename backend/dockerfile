@@ -1,0 +1,16 @@
+FROM node:alpine
+
+RUN mkdir -p /usr/dd_app/backend
+RUN apk --no-cache add curl
+
+WORKDIR /usr/dd_app/backend
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["node","server.js"]

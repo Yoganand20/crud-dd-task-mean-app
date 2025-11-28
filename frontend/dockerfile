@@ -1,0 +1,19 @@
+FROM node:alpine
+
+RUN mkdir -p /usr/dd_app/frontend
+RUN apk --no-cache add curl
+
+WORKDIR /usr/dd_app/frontend
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+EXPOSE 4200
+
+# Start the app
+CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
