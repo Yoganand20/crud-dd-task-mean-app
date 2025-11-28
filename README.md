@@ -43,5 +43,8 @@ Link: http://20.55.250.171:80
 ![nginx restart and curl test](<screenshot/nginx restart and curl test.png>)
 
 4. Accessing web app from local machine
-
+![Accessing web app from local machine 1](<screenshot/Accessing web app from local machine - 1.png>)
+![Accessing web app from local machine 2](<screenshot/Accessing web app from local machine - 2.png>)
+![Accessing web app from local machine 3](<screenshot/Accessing web app from local machine - 3.png>)
+![Accessing web app from local machine 4](<screenshot/Accessing web app from local machine - 4.png>)
 
