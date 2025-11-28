@@ -31,7 +31,7 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
-          tags: yourdockerhubusername/frontend:latest
+          tags: yoganand20/frontend:latest
 
       - name: Build and push backend image
         uses: docker/build-push-action@v3
@@ -39,4 +39,4 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          tags: yourdockerhubusername/backend:latest
+          tags: yoganand20/backend:latest
