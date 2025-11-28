@@ -7,41 +7,40 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - dbdata6:/data/db
+      - dbdata:/data/db
     networks:
-      - some-net
+      - dd-net
 
   dd-frontend:
-    image: dd-frontend:latest
+    image: yoganand20/frontend:latest
     ports:
       - 4200:4200
     networks:
-      - some-net
+      - dd-net
+    restart: unless-stopped
       
   dd-backend:
-    image: dd-backend:latest
+    image: yoganand20/backend:latest
     ports:
       - 8080:8080
     networks:
-      - some-net
-
+      - dd-net
+    restart: unless-stopped
   
-  nginx-proxy:
-    image: nginx:alpine
-    ports:
-      - 80:80  # Single entry point on port 80
+  watchtower:
+    image: containrrr/watchtower
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - dd-frontend
-      - dd-backend
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_SCHEDULE=0 0 4 * * *  # Daily at 4 AM
+      - WATCHTOWER_INCLUDE_STOPPED=false
+    restart: unless-stopped
     networks:
-      - some-net
-    restart: always
+      - dd-net
 
 volumes:
-  dbdata6:
+  dbdata:
 
 networks:
-  some-net:
+  dd-net:
     driver: bridge
